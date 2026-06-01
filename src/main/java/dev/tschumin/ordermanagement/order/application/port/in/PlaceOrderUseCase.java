@@ -1,7 +1,7 @@
 package dev.tschumin.ordermanagement.order.application.port.in;
 
 import dev.tschumin.ordermanagement.order.application.command.PlaceOrderCommand;
-import dev.tschumin.ordermanagement.order.application.dto.OrderDto;
+import dev.tschumin.ordermanagement.order.domain.model.Order;
 
 /**
  * Входной порт сценария размещения заказа.
@@ -12,7 +12,7 @@ public interface PlaceOrderUseCase {
      * Размещает новый заказ.
      *
      * @param command команда размещения заказа
-     * @return представление размещенного заказа
+     * @return размещенный заказ
      */
-    OrderDto placeOrder(PlaceOrderCommand command);
+    Order placeOrder(PlaceOrderCommand command);
 }
