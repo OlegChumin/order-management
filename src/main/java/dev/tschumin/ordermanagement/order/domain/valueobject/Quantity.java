@@ -1,12 +1,22 @@
 package dev.tschumin.ordermanagement.order.domain.valueobject;
 
+import dev.tschumin.ordermanagement.order.domain.exception.OrderDomainException;
+
 /**
  * Количество товара.
+ *
+ * @param value значение количества товара
  */
-public class Quantity {
+public record Quantity(int value) {
 
     /**
-     * Значение количества товара.
+     * Создает количество товара.
+     *
+     * @param value значение количества товара
      */
-    private Integer value;
+    public Quantity {
+        if (value <= 0) {
+            throw new OrderDomainException("Количество товара должно быть больше нуля");
+        }
+    }
 }
