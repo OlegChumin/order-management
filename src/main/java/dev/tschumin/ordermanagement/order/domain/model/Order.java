@@ -91,6 +91,26 @@ public class Order {
     }
 
     /**
+     * Восстанавливает заказ из сохраненного состояния без регистрации новых доменных событий.
+     *
+     * @param id идентификатор заказа
+     * @param customerId идентификатор клиента
+     * @param lines строки заказа
+     * @param status сохраненный статус заказа
+     * @param inventoryReserved сохраненный признак резервирования складских остатков
+     * @return восстановленный заказ
+     */
+    public static Order restore(
+            OrderId id,
+            CustomerId customerId,
+            List<OrderLine> lines,
+            OrderStatus status,
+            boolean inventoryReserved
+    ) {
+        return new Order(id, customerId, lines, status, inventoryReserved);
+    }
+
+    /**
      * Резервирует складские остатки по заказу.
      */
     public void reserveInventory() {
