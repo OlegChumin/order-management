@@ -1,14 +1,21 @@
 package dev.tschumin.ordermanagement.order.domain.valueobject;
 
+import java.util.Objects;
 import java.util.UUID;
 
 /**
  * Идентификатор клиента.
+ *
+ * @param value значение идентификатора клиента
  */
-public class CustomerId {
+public record CustomerId(UUID value) {
 
     /**
-     * Значение идентификатора клиента.
+     * Создает идентификатор клиента.
+     *
+     * @param value значение идентификатора клиента
      */
-    private UUID value;
+    public CustomerId {
+        Objects.requireNonNull(value, "Идентификатор клиента не может быть null");
+    }
 }

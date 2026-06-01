@@ -3,19 +3,24 @@ package dev.tschumin.ordermanagement.order.domain.event;
 import dev.tschumin.ordermanagement.order.domain.valueobject.OrderId;
 
 import java.time.Instant;
+import java.util.Objects;
 
 /**
  * Доменное событие размещения заказа.
+ *
+ * @param orderId идентификатор размещенного заказа
+ * @param occurredAt момент возникновения события
  */
-public class OrderPlacedEvent implements DomainEvent {
+public record OrderPlacedEvent(OrderId orderId, Instant occurredAt) implements DomainEvent {
 
     /**
-     * Идентификатор размещенного заказа.
+     * Создает доменное событие размещения заказа.
+     *
+     * @param orderId идентификатор размещенного заказа
+     * @param occurredAt момент возникновения события
      */
-    private OrderId orderId;
-
-    /**
-     * Момент возникновения события.
-     */
-    private Instant occurredAt;
+    public OrderPlacedEvent {
+        Objects.requireNonNull(orderId, "Идентификатор заказа в событии не может быть null");
+        Objects.requireNonNull(occurredAt, "Момент события не может быть null");
+    }
 }
