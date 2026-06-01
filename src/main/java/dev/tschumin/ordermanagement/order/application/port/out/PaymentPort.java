@@ -4,15 +4,15 @@ import dev.tschumin.ordermanagement.order.domain.valueobject.Money;
 import dev.tschumin.ordermanagement.order.domain.valueobject.OrderId;
 
 /**
- * Выходной порт списания оплаты.
+ * Выходной порт взаимодействия с платежной системой.
  */
-public interface TakePaymentPort {
+public interface PaymentPort {
 
     /**
-     * Списывает оплату по заказу.
+     * Запускает оплату заказа.
      *
      * @param orderId идентификатор заказа
      * @param amount сумма оплаты
      */
-    void takePayment(OrderId orderId, Money amount);
+    void startPayment(OrderId orderId, Money amount);
 }

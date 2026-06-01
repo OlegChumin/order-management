@@ -1,6 +1,6 @@
 package dev.tschumin.ordermanagement.order.application.port.in;
 
-import dev.tschumin.ordermanagement.order.application.dto.OrderDto;
+import dev.tschumin.ordermanagement.order.domain.model.Order;
 import dev.tschumin.ordermanagement.order.domain.valueobject.OrderId;
 
 /**
@@ -12,7 +12,7 @@ public interface GetOrderUseCase {
      * Возвращает заказ по идентификатору.
      *
      * @param orderId идентификатор заказа
-     * @return представление заказа
+     * @return найденный заказ
      */
-    OrderDto getOrder(OrderId orderId);
+    Order getOrder(OrderId orderId);
 }
