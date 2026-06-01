@@ -7,10 +7,10 @@ import org.springframework.stereotype.Component;
 import java.util.Objects;
 
 /**
- * Адаптер взаимодействия со складской системой.
+ * Fake-адаптер складской системы для локального сценария без внешней интеграции.
  */
 @Component
-public class InventoryAdapter implements InventoryPort {
+public class FakeInventoryAdapter implements InventoryPort {
 
     /**
      * Резервирует складские остатки для заказа.

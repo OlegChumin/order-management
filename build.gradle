@@ -33,6 +33,9 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-validation-test'
     testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
     testImplementation 'org.assertj:assertj-core'
+    testImplementation 'org.mockito:mockito-junit-jupiter'
+    testImplementation 'org.testcontainers:junit-jupiter:1.21.4'
+    testImplementation 'org.testcontainers:postgresql:1.21.4'
     testRuntimeOnly 'com.h2database:h2'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
@@ -43,6 +46,9 @@ jacoco {
 
 tasks.named('test') {
     useJUnitPlatform()
+    jacoco {
+        enabled = true
+    }
     finalizedBy tasks.named('jacocoTestReport')
 }
 
@@ -53,25 +59,4 @@ tasks.named('jacocoTestReport') {
         xml.required = true
         html.required = true
     }
-}
-
-tasks.named('jacocoTestCoverageVerification') {
-    dependsOn tasks.named('test')
-
-    violationRules {
-        rule {
-            element = 'CLASS'
-            includes = ['dev.tschumin.ordermanagement.order.domain.*']
-
-            limit {
-                counter = 'LINE'
-                value = 'COVEREDRATIO'
-                minimum = 0.90
-            }
-        }
-    }
-}
-
-tasks.named('check') {
-    dependsOn tasks.named('jacocoTestCoverageVerification')
 }

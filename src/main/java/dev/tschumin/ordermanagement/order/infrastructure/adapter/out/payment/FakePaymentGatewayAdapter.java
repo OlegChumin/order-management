@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 import java.util.Objects;
 
 /**
- * Адаптер взаимодействия с платежной системой.
+ * Fake-адаптер платежного шлюза для локального сценария без внешней интеграции.
  */
 @Component
-public class PaymentAdapter implements PaymentPort {
+public class FakePaymentGatewayAdapter implements PaymentPort {
 
     /**
      * Запускает оплату заказа.
