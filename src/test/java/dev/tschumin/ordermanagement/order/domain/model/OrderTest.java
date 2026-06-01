@@ -71,6 +71,23 @@ class OrderTest {
     }
 
     @Test
+    @DisplayName("Должен восстанавливать заказ из сохраненного состояния без новых событий")
+    void shouldRestoreOrderWithoutNewDomainEvents() {
+        OrderId orderId = OrderId.newId();
+        CustomerId customerId = customerId();
+        List<OrderLine> lines = List.of(orderLine("10.00", 2));
+
+        Order order = Order.restore(orderId, customerId, lines, OrderStatus.INVENTORY_RESERVED, true);
+
+        assertThat(order.id()).isEqualTo(orderId);
+        assertThat(order.customerId()).isEqualTo(customerId);
+        assertThat(order.lines()).containsExactlyElementsOf(lines);
+        assertThat(order.status()).isEqualTo(OrderStatus.INVENTORY_RESERVED);
+        assertThat(order.inventoryReserved()).isTrue();
+        assertThat(order.domainEvents()).isEmpty();
+    }
+
+    @Test
     @DisplayName("Должен проходить успешный сценарий резервирования и оплаты")
     void shouldMoveThroughSuccessfulPaymentFlow() {
         Order order = order();
