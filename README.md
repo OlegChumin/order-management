@@ -389,6 +389,21 @@ build/reports/jacoco/test/jacocoTestReport.xml
 
 Для полноценного запуска REST API нужен доступный PostgreSQL и корректная datasource-конфигурация.
 
+Для проверки distributed tracing через локальный port-forward Jaeger collector можно
+добавить переменные окружения:
+
+```powershell
+$env:OPENTRACING_JAEGER_ENABLED = "true"
+$env:OPENTRACING_JAEGER_SERVICE_NAME = "order-management"
+$env:OPENTRACING_JAEGER_HTTP_SENDER_URL = "http://localhost:14268/api/traces"
+```
+
+Jaeger UI при port-forward доступен по адресу:
+
+```text
+http://localhost:16686
+```
+
 ## Структура проекта
 
 ```text
