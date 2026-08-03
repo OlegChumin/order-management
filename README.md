@@ -1,6 +1,6 @@
 # Order Management
 
-Order Management - учебный сервис управления заказами, построенный на Java 25 и Spring Boot 4.0.6 в стиле Hexagonal Architecture + DDD.
+Order Management - учебный сервис управления заказами, построенный на Java 21 и Spring Boot 3.5.15 в стиле Hexagonal Architecture + DDD.
 
 Проект показывает, как отделить доменную модель от инфраструктуры: бизнес-правила живут в `domain`, сценарии приложения - в `application`, а REST, JPA, PostgreSQL, Flyway и внешние адаптеры - в `infrastructure`.
 
@@ -21,8 +21,8 @@ Order Management - учебный сервис управления заказа
 
 ## Технологии
 
-- Java 25
-- Spring Boot 4.0.6
+- Java 21
+- Spring Boot 3.5.15
 - Gradle
 - Spring Web MVC
 - Spring Data JPA
@@ -396,7 +396,10 @@ build/reports/jacoco/test/jacocoTestReport.xml
 $env:OPENTRACING_JAEGER_ENABLED = "true"
 $env:OPENTRACING_JAEGER_SERVICE_NAME = "order-management"
 $env:OPENTRACING_JAEGER_HTTP_SENDER_URL = "http://localhost:14268/api/traces"
+$env:OPENTRACING_JAEGER_CONST_SAMPLER_DECISION = "true"
 ```
+
+В этом примере const sampler отправляет в Jaeger все создаваемые spans.
 
 Jaeger UI при port-forward доступен по адресу:
 
